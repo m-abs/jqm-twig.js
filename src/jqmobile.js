@@ -28,7 +28,10 @@
 
 	var
 		templates, // list of twig.js templates referenced by template id
-		eventNameSpace = "jqm-twig",
+		eventNameSpace = ".jqm-twig",
+
+		logUrl = "/logdata",
+		pageDataUrl = "/pageAjax/",
 
 		// Older Android browsers don't like fixed toolbars
 		noFixedToolbar = /Android\s[23]/i.test( navigator.userAgent ),
@@ -194,7 +197,7 @@
 				}
 
 				// If the template exists, request the data for the template via AJAX
-				last_jqXHR = $.ajax( window.location.pathname, {
+				last_jqXHR = $.ajax( pageDataUrl + pageId, {
 					"data": params,
 					"success" : function( twigParams ) {
 						last_jqXHR = undefined;
@@ -338,6 +341,8 @@
 
 		$body = $( document.body );
 
+		default_page = ( default_page === "#" ? "#" + $body.data( "my-default-page" ) : default_page );
+
 		templates = // list of twig.js templates referenced by template id
 			( function( elements ) {
 				var res = {
@@ -407,7 +412,7 @@
 			} );
 		}
 
-		$body.on( "click." + eventNameSpace, "a", function( e ) {
+		$body.on( "click" + eventNameSpace, "a", function( e ) {
 			var $this = $( this ),
 				data = {},
 				href = $this.attr( "href" ) || "";
@@ -456,7 +461,7 @@
 		} );
 
 		// Capture navigation changes
-		$window.on( "navigate." + eventNameSpace, function( e, _data ) {
+		$window.on( "navigate" + eventNameSpace, function( e, _data ) {
 			try {
 				if ( $.mobile.activePage ) {
 					// Close panel
@@ -522,12 +527,12 @@
 			}
 		} );
 
-		$window.on( "ajax_log." + eventNameSpace, function( e, _data ) {
+		$window.on( "ajax_log" + eventNameSpace, function( e, _data ) {
 			if ( !_data ) {
 				return;
 			}
 
-			$.post( window.location.pathname, {
+			$.post( logUrl, {
 				"type"    : "ajax",
 				"action"  : "logdata",
 				"is_utf8" : 1,
