@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+{% for id, template in templates %}
+<script type="x-tmpl-twigjs" data-template-id="{{id}}">
+{{template}}
+</script>
+{% endfor %}
+        <link rel="stylesheet" href="/stylesheets/jquery.mobile-1.3.1.css" />
+
+        <script src="/javascripts/jquery-1.10.2.js"></script>
+        <script src="/javascripts/jquery.mobile-1.3.1.js"></script>
+        <script src="/javascripts/twig.js"></script>
+        <script src="/javascripts/jqmobile.js"></script>
+    </head>
+    <body data-my-default-page="start">
+    </body>
+</html>

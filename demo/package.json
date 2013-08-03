@@ -1,0 +1,13 @@
+{
+  "name": "jqm-twig.js-demo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/nodemon/nodemon.js -w . -e '.js$|.twig$' app.js"
+  },
+  "dependencies": {
+    "express": "3.3.4",
+    "twig": "*",
+    "nodemon" : "*"
+  }
+}

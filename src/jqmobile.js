@@ -369,7 +369,7 @@
 				} );
 
 				return res;
-			} )( $body.find( "script[type=\"x-tmpl-twigjs\"]" ) );
+			} )( $( "script[type=\"x-tmpl-twigjs\"]" ) );
 
 		// Handle handle warnings
 		if ( warningTemplate ) {
